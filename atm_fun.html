@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Bank App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+      
+        .deposit { background-color: #4CAF50; color: white; }
+        .withdraw { background-color: #f44336; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Bank Account</h2>
+        <p id="balance">Balance:0</p>
+        <button class="deposit" onclick="depositMoney()">Deposit</button>
+        <button class="withdraw" onclick="withdrawMoney()">Withdraw</button>
+    </div>
+
+    <script>
+        let balance = 0;
+
+        function checkBalance() {
+            document.getElementById("balance").innerText = "Balance: " + balance;
+        }
+
+        function depositMoney() {
+            let amount = prompt("Enter amount to deposit:");
+            amount = parseFloat(amount);
+            if (!isNaN(amount) && amount > 0) {
+                balance += amount;
+                alert("Deposited: $" + amount);
+                checkBalance();
+            } else {
+                alert("Invalid amount!");
+            }
+        }
+
+        function withdrawMoney() {
+            let amount = prompt("Enter amount to withdraw:");
+            amount = parseFloat(amount);
+            if (!isNaN(amount) && amount > 0) {
+                if (amount <= balance) {
+                    balance -= amount;
+                    alert("Withdrawn: " + amount);
+                    checkBalance();
+                } else {
+                    alert("Insufficient balance!");
+                }
+            } else {
+                alert("Invalid amount!");
+            }
+        }
+    </script>
+
+</body>
+</html>
